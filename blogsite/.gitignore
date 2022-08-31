@@ -1,0 +1,9 @@
+*
+__pycache__
+__pycache__/
+
+# Environments
+.blog_env
+blog_env/
+
+db.sqlite3
