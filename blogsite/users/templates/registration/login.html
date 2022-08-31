@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <div class="mx-auto" style="width: 500px">
+    <form method="post" class="form-horizontal">
+        {% csrf_token%}
+        <div class="col-xs-8 col-xs-offset-4">
+            <h2 style="text-align:center;">LOGIN</h2>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+        </div>
+          <h6>Don't have an account? Create one <a href="{% url 'signup' %}">Here</a>!</h6>
+          <button type="submit" class="btn btn-success me-2">Log In</button>
+          <a class="btn btn-danger" href="{% url 'password_reset' %}">Forgot Password</a>
+    </form>
+  </div>
+{% endblock %}

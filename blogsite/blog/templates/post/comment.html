@@ -1,0 +1,38 @@
+{% for comment in active_comments %}
+<section class="m-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 border border-primary py-3">
+          <div class="mb-3 d-flex">
+           <h5>Name: {{ comment.name }} {% if comment.origin != "origin" %} <b> (API)  </b> {% endif %}</h5>
+          </div>
+          <div class="mb-3 d-flex">
+            <p>Email: {{ comment.email }}</p>
+          </div>
+          <div class="mb-3">
+            <p>Body: {{ comment.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="col-md-8 card mb-4  mt-3 ">
+    <div class="card-body">
+      {% if new_comment %}
+      <div class="alert alert-success" role="alert">
+        Your comment is awaiting moderation
+      </div>
+      {% else %}
+      <h3>Leave a comment</h3>
+      <form method="post" style="margin-top: 1.3em;">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+      </form>
+      {% endif %}
+    </div>
+</div>
+{% endif %}

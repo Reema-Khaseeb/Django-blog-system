@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock title %}
+
+{% block content %}
+<main>
+    <section class="m-5" id="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                          <h2>{{ post.title }}</h2>
+                          {% if user.is_authenticated %}
+                          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="btn btn-primary me-2" href="{% url 'blog:edit' post.slug %}">Edit Post</a>
+                          </div>
+                          {% endif %}
+                        </div>
+                        <div class="card-body">
+                          <h4 class="card-title">{{ post.author }}</h4>
+                          <p class="card-text">{{ post.body }}</p>
+                        </div>
+                        <section class="m-4">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-12 py-2">
+                                <div class="userComment p-3 border border-success rounded">
+                                  <h4>Comments</h4>
+                                  {% include "post/comment.html" %}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <b><a href="{% url 'blog:list_all' %}">Go Back</a></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}
